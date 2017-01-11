@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<title>个人设置</title>
+	<link rel="shortcut icon" href="fonts/favicon.ico">	
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-material-design.min.css">
+	<link rel="stylesheet" href="css/ripples.min.css">
+	<link rel="stylesheet" href="css/material-icons.css">	
+	<link rel="stylesheet" href="css/framework.css"><!--头的架设-->
+	<link rel="stylesheet" href="css/style.css">
+	<!--[if IE]>
+		<script src="../static/http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<!-- Page Preloader -->
+	<div class="animationload">
+	  <div class="loader">
+	    <svg class="circular" viewBox="25 25 50 50">
+	      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="1"/>
+	    </svg>
+	    <p>Loading...</p>
+	  </div>
+	</div>
+	<!-- Page Preloader end-->
+
+	<div id="header">
+		<ul class="header-inner">
+			<li class="menu-trigger" id="menu-trigger">
+				<div id="menu-icon-wrapper" class="menu-icon-wrapper" style="visibility: hidden">
+					<svg width="1000px" height="1000px">
+						<path id="pathA" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+						<path id="pathB" d="M 300 500 L 700 500"></path>
+						<path id="pathC" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+					</svg>
+					<button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+				</div><!-- menu-icon-wrapper-->
+				<div id="dummy" class="dummy"></div><!-- dummy -->
+			</li>
+			<li class="logo hidden-xs"><a th:href="@{/}">13INT-1</a></li>
+			<li class="pull-right">
+				<ul class="top-menu">
+					<li id="top-search"><a href="javascript:void(0);"><i class="material-icons">search</i></a></li>
+					<li class="dropdown" id="info-btn">
+						<a href="javascript:void(0);">
+							<i class="material-icons">notifications</i>
+						</a>
+						<div class="dropdown-menu dropMenu pull-right" id="info">
+							<div class="lv-header">消息提醒</div>
+              <div class="lv-body">                  
+                <a class="lv-item" href="javascript:void(0);">
+                  <div class="media">
+                    <div class="pull-left">
+                      <img class="lv-img-sm" src="images/1.jpg" alt="">
+                    </div>
+                    <div class="media-body">
+                      <div class="lv-title">David Belle</div>
+                      <small class="lv-small">Cum sociis natoque penatibus et magnis dis parturient montes</small>
+                    </div>
+                  </div>
+                </a>
+                <a class="lv-item" href="javascript:void(0);">
+                  <div class="media">
+                    <div class="pull-left">
+                      <img class="lv-img-sm" src="images/1.jpg" alt="">
+                    </div>
+                    <div class="media-body">
+                      <div class="lv-title">David Belle</div>
+                      <small class="lv-small">Cum sociis natoque penatibus et magnis dis parturient montes</small>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div style="overflow: hidden;"><a class="lv-footer" href="javascript:void(0);">所有消息</a></div>
+						</div><!--dropdown-menu end-->
+					</li>
+					<li class="hidden-xs chat-btn"><a href="javascript:void(0);" id="chat-btn"><i class="material-icons">comment</i></a></li>
+					<!-- <li><a href="login.html" class="login-register"><span>登录/注册</span></a></li> -->
+					<!-- 登陆前 -->
+					<!-- <li class="loginBefore"><a th:href="@{/login}" class="login-register"><span>登录/注册</span></a></li> -->
+					<!-- 登录后 -->
+					<li id="top-user-btn" class="loginAfter" th:each="post:${posts}">
+						<div class="user-headimg"><img id="headimg2" th:src="@{http://oihey4yi1.bkt.clouddn.com/__${post.headimgfile}__}" alt=""></div>
+						<div class="dropdown-menu dropMenu pull-right" id="top-user">
+              <div class="lv-header">
+                个人信息                  
+              </div>
+              <div class="lv-body">
+                <div class="myInfo">
+                  <div class="myphoto"> 
+                    <div class="userhead" data-type="update_avatar"> 
+                      <a th:href="@{/profile}" style="display:block;">
+	                      <img id="headimg3" th:src="@{http://oihey4yi1.bkt.clouddn.com/__${post.headimgfile}__}" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="myshow">
+                    <div class="myname"><span th:text="${post.username}"></span></div>
+                    <div class="Email"><span th:text="${post.usermail}"></span></div>
+                    <div class="signature"><span th:text="${post.saying}"></span></div>
+                    <a class="btn user-myprofile" th:href="@{/profile}">我的账户</a>
+                    <a class="btn user-setting" th:href="@{/config}">设置</a>
+                  </div>
+                </div><!--myInfo end-->
+              <div style="overflow: hidden;"><a class="lv-footer exit" href="javascript:void(0);">退出</a></div>
+						</div><!--dropdown-menu end-->
+					</li>
+					<!-- 登录后 end-->
+				</ul>
+			</li>
+		</ul>
+		<div id="top-search-wrap">
+			<div class="tsw-inner">
+				<i class="material-icons top-search-btn">search</i>
+        <form>
+        	<input type="text" name="keyword">
+        </form>
+			</div><!--tsw-inner end-->
+		</div><!--top-search-wrap end-->
+	</div>
+	<div id="main">
+		<!-- <div class="btn currenty-new c-shadow"><a href="javascript:void(0);"><i class="material-icons">add</i></a></div> -->
+		<div class="leftmenu" id="leftmenu">
+			<ul class="main-menu">
+				<li class="btn btn-default"><a th:href="@{/}"><i class="material-icons">home</i>首页</a></li>
+				<li class="btn btn-default"><a href="#"><i class="material-icons">message</i>班级公告</a></li>
+				<li class="btn btn-default"><a th:href="@{/classPhoto}"><i class="material-icons">image</i>班级相册</a></li>
+				<li class="btn btn-default"><a th:href="@{/party}"><i class="material-icons">supervisor_account</i>班级聚会</a></li>
+				<li class="btn btn-default"><a href="#"><i class="material-icons">file_download</i>资料分享</a></li>
+				<li class="btn btn-default"><a href="#"><i class="material-icons">swap_horiz</i>留言反馈</a></li>
+			</ul>
+		</div><!--leftmenu end-->
+		<div class="leftmenu-mb" id="leftmenu-mb"></div><!--左菜单遮罩-->
+		<!-- <div class="chat-mb" id="chat-mb"></div> -->
+		<div class="chat hidden-xs" id="chat">
+			占位  占位  占位  占位  占位
+		</div><!--chat end-->
+		<!---------- main in here ---------->
+		<div class="container">
+			<div class="block-header">
+				<ol class="breadcrumb">
+				  <li><a th:href="@{/}">首页</a></li>				  
+				  <li class="active">个人资料设置</li>
+				</ol>				
+				<!-- <a href="javascript:void(0)" class="btn btn-info party-launch-btn pull-right">添加照片</a> -->
+			</div><!--block-header end-->
+			
+			<div class="myContainer" th:each="post:${posts}">
+				<div class="myProfile-header c-shadow">
+					<form id="uploadbanner" method="POST" enctype="multipart/form-data"> 
+					<div class="banner">
+						<div id="banner-loader" class="img-loader" style="top: 20%; display: none;">
+	    					<svg class="circular" viewBox="25 25 50 50">
+	      						<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="1"/>
+	    					</svg>
+	  					</div> 
+						<img id="bannerimg" th:src="@{http://oihey4yi1.bkt.clouddn.com/__${post.backimgfile}__}" alt="">
+						<a href="#" class="change-banner"><i class="material-icons">photo_camera</i></a>
+						<input id="uploadFile2" type="file" name="file2" class="change-banner" style="opacity: 0;z-index: 10;" value="" />
+					</div>
+					</form>
+					<div class="myProfile-img-div">
+					<form id="uploadhead" method="POST" enctype="multipart/form-data">
+						<div id="head-loader" class="img-loader" style="display: none;">
+	    					<svg class="circular" viewBox="25 25 50 50">
+	      						<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="1"/>
+	    					</svg>
+	  					</div> 
+						<img id="headimg" th:src="@{http://oihey4yi1.bkt.clouddn.com/__${post.headimgfile}__}" alt="">
+						<a href="#" class="change-headimg"><i class="material-icons">photo_camera</i></a>
+					    <input id="uploadFile" type="file" name="file" class="change-headimg" style="opacity: 0;z-index: 10;" value="" />
+					</form>
+					</div><!--myProfile-img-div end-->
+					<div class="myProfile-name"><span th:text="${post.username}"></span></div>
+				</div><!--myProfile-header end-->
+				
+				<div class="col-md-6 col-sm-6 pd8">
+					<div class="card myProfile-card c-shadow">
+						<form action="" class="form-body">
+							<div class="card-header">
+                <h5><i class="material-icons">playlist_add_check</i><span>信息设置</span></h5>
+              </div><!--card-header end-->
+              <div class="card-body">
+              	<div class="form-group row">
+							    <label for="purview1" class="purview_label">手机：</label>
+							    <select id="purview1" class="select form-control">
+							      <option th:value="${post.cfphonenumber}"><span th:text="${post.cfphonenumber}"></span></option>
+							    </select>
+							  </div><!--form-group end-->
+							  <div class="form-group row">
+							    <label for="purview2" class="purview_label">地址：</label>
+							    <select id="purview2" class="select form-control">
+							      <option th:value="${post.cfaddress}"><span th:text="${post.cfaddress}"></span></option>
+							    </select>
+							  </div><!--form-group end-->
+							  <div class="form-group row">
+							    <label for="purview3" class="purview_label">生日：</label>
+							    <select id="purview3" class="select form-control">
+							      <option th:value="${post.cfbirthday}"><span th:text="${post.cfbirthday}"></span></option>
+							    </select>
+							  </div><!--form-group end-->
+							  <div class="form-group row">
+							    <label for="purview4" class="purview_label">性别：</label>
+							    <select id="purview4" class="select form-control">
+							      <option th:value="${post.cfsex}"><span th:text="${post.cfsex}"></span></option>
+							    </select>
+							  </div><!--form-group end-->
+							  <div class="form-group row">
+							    <label for="purview5" class="purview_label">爱好：</label>
+							    <select id="purview5" class="select form-control">
+							      <option th:value="${post.cfhobby}"><span th:text="${post.cfhobby}"></span></option>
+							    </select>
+							  </div><!--form-group end-->
+              </div><!--card-body end-->
+              <div class="button-label">
+	            	<button id="infoconfig" type="button" class="btn join-party">保存</button>
+	            </div>
+						</form>
+					</div><!--card end-->
+				</div><!--col-md-6 end-->
+				<div class="col-md-6 col-sm-6 pd8">
+					<div class="card myProfile-card c-shadow">
+						<form action="" class="form-body">
+							<div class="card-header">
+                <h5><i class="material-icons">notifications_active</i><span>消息提醒</span></h5>
+              </div><!--card-header end-->
+              <div class="card-body">
+							  <div class="form-group row">
+							    <label class="purview_label">接收新消息通知</label>
+								  <div class="togglebutton pull-right">
+					          <label><input id="checkbox1" th:value="${post.cfinfo}" type="checkbox"></label>
+					        </div><!--togglebutton end-->
+					      </div><!--form-group end-->
+					      <div class="form-group row">
+							    <label class="purview_label">班级相册更新提醒</label>
+								  <div class="togglebutton pull-right">
+					          <label><input id="checkbox2" th:value="${post.cfphoto}" type="checkbox"></label>
+					        </div><!--togglebutton end-->
+					      </div><!--form-group end-->
+					      <div class="form-group row">
+							    <label class="purview_label">班级公告更新提醒</label>
+								  <div class="togglebutton pull-right">
+					          <label><input id="checkbox3" th:value="${post.cfreport}" type="checkbox"></label>
+					        </div><!--togglebutton end-->
+					      </div><!--form-group end-->
+					      <div class="form-group row">
+							    <label class="purview_label">邮箱提醒</label>
+								  <div class="togglebutton pull-right">
+					          <label><input id="checkbox4" th:value="${post.cfmail}" type="checkbox"></label>
+					        </div><!--togglebutton end-->
+					      </div><!--form-group end-->
+              </div><!--card-body end-->
+              <div class="button-label">
+	            	<button id="messagenotify" type="button" class="btn join-party">保存</button>
+	            </div>
+						</form>
+					</div><!--card end-->
+				</div><!--col-md-6 end-->
+			</div><!--myContainer end-->
+		</div><!--container end-->
+
+		<!---------- main in here  end---------->
+	</div><!--main end-->
+	<div id="footer">
+		Copyright © 2016 13INT-1.TOP
+    <ul class="f-menu">
+        <li><a href="#">发送反馈</a></li>
+        <li><a href="#">帮助</a></li>
+        <li><a href="#">联系我们</a></li>
+    </ul>
+	</div><!--footer end-->
+	
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/material.min.js"></script>
+	<script src="js/ripples.min.js"></script>
+	<script>$.material.init()</script>
+	<!--menu-icon-wrapper-->
+	<link rel="stylesheet" type="text/css" href="js/menu-icon/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="js/menu-icon/component.css" />
+	<script src="js/menu-icon/segment.min.js"></script>
+	<script src="js/menu-icon/ease.min.js"></script>
+	<script src="js/menu-icon/main.js"></script>
+	<!--menu-icon-wrapper end-->
+	<script src="js/header_main.js"></script><!--header按钮响应-->
+	<!--messenger-->
+	<link rel="stylesheet" href="js/messenger/messenger.css">
+	<link rel="stylesheet" href="js/messenger/messenger-theme-future.css">
+	<script src="js/messenger/messenger.min.js"></script>
+	<!--messenger end-->
+	<!-- dropdown -->
+	<link rel="stylesheet" href="js/dropdown/jquery.dropdown.css">
+	<script src="js/dropdown/jquery.dropdown.js"></script>
+	<script src="js/jquery.form.js"></script>
+	<script>
+		$(document).ready(function() {
+      $(".select").dropdown({"optionClass": "withripple"});
+    });
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		  for(var i = 1; i <= 5; i++){
+    		  if(document.getElementById("purview" + i).options[0].text == "公开") {
+    			  document.getElementById("purview" + i).options.add(new Option("私密","私密"));
+    			  document.getElementById("purview" + i).options.add(new Option("好友可见","好友可见"));
+    		  }
+    		  if(document.getElementById("purview" + i).options[0].text == "私密") {
+    			  document.getElementById("purview" + i).options.add(new Option("公开","公开"));
+    			  document.getElementById("purview" + i).options.add(new Option("好友可见","好友可见"));
+    		  }	
+    		  if(document.getElementById("purview" + i).options[0].text == "好友可见") {
+    			  document.getElementById("purview" + i).options.add(new Option("公开","公开"));
+    			  document.getElementById("purview" + i).options.add(new Option("私密","私密"));
+    		  }	
+		  }
+		  for(var i = 1; i <= 4; i++){
+    		  if($("#checkbox" + i).val() == "true"){
+    			  $("#checkbox" + i).attr("checked",true);
+    		  }else if($("#checkbox" + i).val() == "false"){
+    			  $("#checkbox" + i).attr("checked",false);
+    		  }
+		  }
+		  $('#infoconfig').click(function(){
+			  clickinfoconfig();
+		  });
+		  $('#messagenotify').click(function(){
+			  clickmessagenotify();
+		  });
+/*		$.ajax({
+		      type: "POST",
+		      contentType : "application/json;charset=utf-8",
+		      dataType:"json",
+		      url: "/config_session",
+		      async: true,
+		      data:{},
+		      error:function (XMLHttpRequest, textStatus, errorThrown) {
+		    	  alert(XMLHttpRequest + textStatus + "error");
+		    	},
+		      success: function(data){
+		    	  if(data.msg == "no session"){
+		    		  $._messengerDefaults = {
+		    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+		    				};
+		    			 $.globalMessenger().post({
+		    		            message: "您还没有登录，请登录后再试",
+		    		            hideAfter: 3,
+		    		            type: 'error',
+		    		            //showCloseButton: true
+		    		        });
+		    			 $(".container").empty();
+		    			 $('.loginAfter').css('display','none');
+			    		 $('.loginBefore').css('display','block');
+		    	  }else if(data.msg == "have session"){
+		    		  for(var i = 1; i <= 5; i++){
+			    		  if(document.getElementById("purview" + i).options[0].text == "公开") {
+			    			  document.getElementById("purview" + i).options.add(new Option("私密","私密"));
+			    			  document.getElementById("purview" + i).options.add(new Option("好友可见","好友可见"));
+			    		  }
+			    		  if(document.getElementById("purview" + i).options[0].text == "私密") {
+			    			  document.getElementById("purview" + i).options.add(new Option("公开","公开"));
+			    			  document.getElementById("purview" + i).options.add(new Option("好友可见","好友可见"));
+			    		  }	
+			    		  if(document.getElementById("purview" + i).options[0].text == "好友可见") {
+			    			  document.getElementById("purview" + i).options.add(new Option("公开","公开"));
+			    			  document.getElementById("purview" + i).options.add(new Option("私密","私密"));
+			    		  }	
+		    		  }
+		    		  
+		    		  for(var i = 1; i <= 4; i++){
+			    		  if($("#checkbox" + i).val() == "true"){
+			    			  $("#checkbox" + i).attr("checked",true);
+			    		  }else if($("#checkbox" + i).val() == "false"){
+			    			  $("#checkbox" + i).attr("checked",false);
+			    		  }
+		    		  }
+
+		    		  
+		    		  $('.loginAfter').css('display','block');
+		    		  $('.loginBefore').css('display','none');
+		    		  
+		    		  $('#infoconfig').click(function(){
+		    			  clickinfoconfig();
+		    		  });
+		    		  $('#messagenotify').click(function(){
+		    			  clickmessagenotify();
+		    		  });
+		    	  }
+		      }
+		  });*/
+	});
+	
+	function clickinfoconfig(){
+		$.ajax({
+		      type: "POST",
+		      contentType : "application/json;charset=utf-8",
+		      dataType:"json",
+		      url: "/config_infoconfig",
+		      async: true,
+		      data:JSON.stringify({"cfphonenumber" : $("#purview1").val(), "cfaddress" : $("#purview2").val(), "cfbirthday" : $("#purview3").val(), "cfsex" : $("#purview4").val(), "cfhobby" : $("#purview5").val()}),
+		      error:function (XMLHttpRequest, textStatus, errorThrown) {
+		    	  alert(XMLHttpRequest + textStatus + "error");
+		    	},
+		      success: function(data){
+		    	  if(data.msg == "have session"){
+		    			  $('.loginAfter').css('display','block');
+			    	      $('.loginBefore').css('display','none');
+		    		      //提示成功
+			    		  $._messengerDefaults = {
+			    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+			    				};
+			    		  $.globalMessenger().post({
+		    		          message: "保存成功",
+		    		          hideAfter: 2,
+		    		          type: 'success',
+		    		            //showCloseButton: true
+		    		      });
+		    		  }
+		    	  else if(data.msg == "no session"){
+		    		  $._messengerDefaults = {
+		    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+		    				};
+		    			 $.globalMessenger().post({
+		    		            message: "您还没有登录，请登录后再试",
+		    		            hideAfter: 3,
+		    		            type: 'error',
+		    		            //showCloseButton: true
+		    		        });
+		    			 //$(".container").empty();
+		    			 $('.loginAfter').css('display','none');
+			    		 $('.loginBefore').css('display','block');
+		    	  }
+		      }
+		  });
+	}
+	
+	function clickmessagenotify(){
+		$.ajax({
+		      type: "POST",
+		      contentType : "application/json;charset=utf-8",
+		      dataType:"json",
+		      url: "/config_messagenotify",
+		      async: true,
+		      data:JSON.stringify({"cfinfo" : $("#checkbox1").is(':checked'), "cfphoto" : $("#checkbox2").is(':checked'), "cfreport" : $("#checkbox3").is(':checked'), "cfmail" : $("#checkbox4").is(':checked')}),
+		      error:function (XMLHttpRequest, textStatus, errorThrown) {
+		    	  alert(XMLHttpRequest + textStatus + "error");
+		    	},
+		      success: function(data){
+		    	  if(data.msg == "have session"){
+		    			  $('.loginAfter').css('display','block');
+			    	      $('.loginBefore').css('display','none');
+		    		      //提示成功
+			    		  $._messengerDefaults = {
+			    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+			    				};
+			    		  $.globalMessenger().post({
+		    		          message: "保存成功",
+		    		          hideAfter: 2,
+		    		          type: 'success',
+		    		            //showCloseButton: true
+		    		      });
+		    		  }
+		    	  else if(data.msg == "no session"){
+		    		  $._messengerDefaults = {
+		    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+		    				};
+		    			 $.globalMessenger().post({
+		    		            message: "您还没有登录，请登录后再试",
+		    		            hideAfter: 3,
+		    		            type: 'error',
+		    		            //showCloseButton: true
+		    		        });
+		    			 //$(".container").empty();
+		    			 $('.loginAfter').css('display','none');
+			    		 $('.loginBefore').css('display','block');
+		    	  }
+		      }
+		  });
+	}
+	
+	//退出
+	$('.exit').click(function(){
+		$.ajax({
+		      type: "POST",
+		      contentType : "application/json;charset=utf-8",
+		      dataType:"json",
+		      url: "/exit",
+		      async: true,
+		      data:{},
+		      error:function (XMLHttpRequest, textStatus, errorThrown) {
+		    	  alert(XMLHttpRequest + textStatus + "error");
+		    	},
+		      success: function(data){
+		    	  if(data.msg == "no session"){
+		    			$._messengerDefaults = {
+		    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+		    				};
+		    			 $.globalMessenger().post({
+		    		            message: "您还没有登录，请登录后再试",
+		    		            hideAfter: 3,
+		    		            type: 'error',
+		    		            //showCloseButton: true
+		    		        });
+		    	  }else if(data.msg == "success exit"){
+		    		  window.location.href = "/";
+		    	  }
+		      }
+		  });
+	});
+	
+	//头像上传
+
+	//实时预览
+	$("#uploadFile").change(function () {
+	    var fil = this.files;
+	    for (var i = 0; i < fil.length; i++) {
+	        reads(fil[i]);
+	    }
+	});
+	function reads(fil){
+	    var reader = new FileReader();
+	    reader.readAsDataURL(fil);
+	    reader.onload = function()
+	    {
+	    	$("#head-loader").css('display','block');
+	        $("#headimg").attr("src",reader.result);
+	    	$("#uploadhead").ajaxSubmit({
+	    		type: 'POST',  
+	    		url: "/uploadAvatar" ,  
+	    		success: function(data){  
+	    			if(data.msg == "上传成功"){
+	    	    		  $._messengerDefaults = {
+	    	    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+	    	    				};
+	    	    		  $.globalMessenger().post({
+	      		          message: "保存成功",
+	      		          hideAfter: 2,
+	      		          type: 'success',
+	      		            //showCloseButton: true
+	      		      });
+	    				$("#headimg").attr("src","http://oihey4yi1.bkt.clouddn.com/" + data.file);
+	    				$("#headimg2").attr("src","http://oihey4yi1.bkt.clouddn.com/" + data.file);
+	    				$("#headimg3").attr("src","http://oihey4yi1.bkt.clouddn.com/" + data.file);
+	    				$("#head-loader").css('display','none');
+	    			}else if(data.msg == "上传失败"){
+	  	    		  $._messengerDefaults = {
+		    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+		    				};
+		    			 $.globalMessenger().post({
+		    		            message: "保存失败，请检查网络设置",
+		    		            hideAfter: 2,
+		    		            type: 'error',
+		    		            //showCloseButton: true
+		    		        });
+		    			 $("#head-loader").css('display','none');
+	    			}
+	    		},  
+	    		error: function(XmlHttpRequest, textStatus, errorThrown){  
+		    		  $._messengerDefaults = {
+		    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+		    				};
+		    			 $.globalMessenger().post({
+		    		            message: "Serious error",
+		    		            hideAfter: 2,
+		    		            type: 'error',
+		    		            //showCloseButton: true
+		    		        });
+		    			 $("#head-loader").css('display','none');
+	    		}  
+	    	});
+	    };
+	}
+
+	//背景上传
+	$("#uploadFile2").change(function () {
+	    var fil = this.files;
+	    for (var i = 0; i < fil.length; i++) {
+	        reads2(fil[i]);
+	    }
+	});
+	function reads2(fil){
+	    var reader = new FileReader();
+	    reader.readAsDataURL(fil);
+	    reader.onload = function()
+	    {
+	    	$("#banner-loader").css('display','block');
+	        $("#bannerimg").attr("src",reader.result);
+	    	$("#uploadbanner").ajaxSubmit({
+	    		type: 'POST',  
+	    		url: "/uploadbanner" ,  
+	    		success: function(data){  
+	    			if(data.msg == "上传成功"){
+	    	    		  $._messengerDefaults = {
+	    	    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+	    	    				};
+	    	    		  $.globalMessenger().post({
+	      		          message: "保存成功",
+	      		          hideAfter: 2,
+	      		          type: 'success',
+	      		            //showCloseButton: true
+	      		      });
+	    	    		$("#bannerimg").attr("src","http://oihey4yi1.bkt.clouddn.com/" + data.file);
+	    	    		$("#banner-loader").css('display','none');
+	    			}else if(data.msg == "上传失败"){
+	    	    		  $._messengerDefaults = {
+	  	    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+	  	    				};
+	  	    			 $.globalMessenger().post({
+	  	    		            message: "保存失败，请检查网络设置",
+	  	    		            hideAfter: 2,
+	  	    		            type: 'error',
+	  	    		            //showCloseButton: true
+	  	    		        });
+	  	    			$("#banner-loader").css('display','none');
+	    			}
+	    		},  
+	    		error: function(XmlHttpRequest, textStatus, errorThrown){  
+		    		  $._messengerDefaults = {
+		    					extraClasses: 'messenger-fixed messenger-theme-future messenger-on-top'
+		    				};
+		    			 $.globalMessenger().post({
+		    		            message: "Serious error",
+		    		            hideAfter: 2,
+		    		            type: 'error',
+		    		            //showCloseButton: true
+		    		        });
+		    			 $("#banner-loader").css('display','none');
+	    		}  
+	    	}); 
+	    };
+	}
+
+	</script>
+	<!-- dropdown end -->
+</body>
+</html>
